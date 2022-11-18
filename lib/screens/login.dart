@@ -37,7 +37,9 @@ class _LoginPageState extends State<LoginPage> {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: ElevatedButton(
         onPressed: () {
-         
+          context
+              .read<AuthProvider>()
+              .signIn(emailController.text, passwordController.text);
         },
         child: const Text('Log In', style: TextStyle(color: Colors.white)),
       ),
@@ -48,6 +50,11 @@ class _LoginPageState extends State<LoginPage> {
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: ElevatedButton(
         onPressed: () async {
+          context
+              .read<AuthProvider>()
+              .signUp(emailController.text, passwordController.text);
+          Navigator.pop(context);
+
           Navigator.of(context).push(
             MaterialPageRoute(
               builder: (context) => const SignupPage(),
